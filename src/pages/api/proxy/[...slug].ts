@@ -30,7 +30,7 @@ export default function handler(
   const isJSON = requestUrl.endsWith(".json");
   axios.get(requestUrl).then(response => {
     if (isJSON) {
-      res.status(response.status).json(response.data);
+      return res.status(response.status).json(response.data);
     }
     res.status(response.status).end(response.data);
   });
