@@ -10,7 +10,7 @@
 
 需要结合Obsidian Proxy Github插件使用，插件地址：
 
-[下载插件](./public/obsidian-plugin-proxy.zip)
+[点击下载插件](./public/obsidian-plugin-proxy.zip)
 
 ## 配置
 

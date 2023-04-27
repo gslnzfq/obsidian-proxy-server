@@ -1,13 +1,16 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
+import { Meta } from "next/dist/lib/metadata/generate/meta";
 
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <Meta content="width=device-width, initial-scale=1" name="viewport"/>
+      </Head>
       <body>
-        <Main />
-        <NextScript />
+      <Main/>
+      <NextScript/>
       </body>
     </Html>
-  )
+  );
 }
