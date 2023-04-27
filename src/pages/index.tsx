@@ -26,7 +26,7 @@ export default function App() {
       </ol>
 
       <p>如图所示</p>
-      <img src="/feature.png" width={600} alt=""/>
+      <img src="https://assets.gslnzfq.cn/files/20230427/feature.png" width={600} alt=""/>
 
       <h3>配置方法</h3>
       <p>打开Obsidian设置 - Plugin Proxy 进行下面设置</p>
@@ -39,7 +39,7 @@ export default function App() {
         "userImages": `${origin}/api/proxy/user-images/`,
       }, null, 2)}
     </pre>
-      <img src="/obsidian_proxy.jpg" width={600} alt=""/>
+      <img src="https://assets.gslnzfq.cn/files/20230427/obsidian_proxy.jpg" width={600} alt=""/>
       <h3>注意事项</h3>
       <p>上述是一个演示配置，有时候可能不太稳定，如果条件允许请fork该站仓库自己部署到netlify后使用。</p>
       <p>仓库地址：
