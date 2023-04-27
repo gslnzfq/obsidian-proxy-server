@@ -1,7 +1,15 @@
 {
   "name": "obsidian-proxy-server",
+  "description": "基于next.js实现的obsidian插件主题下载代理服务器",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://github.com/gslnzfq/obsidian-proxy-server#readme",
+  "author": "gslnzfq <gslnzfq@live.cn>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gslnzfq/obsidian-proxy-server.git"
+  },
+  "bugs": "https://github.com/gslnzfq/obsidian-proxy-server/issues",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
