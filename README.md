@@ -18,4 +18,19 @@
 
 ## 配置
 
+部署完成后会生成一个网址，然后再obsidian中进行配置即可，配置文件如下：
+
+```json
+{
+  "id": "myproxy",
+  "raw": "<your site url>/api/proxy/raw/",
+  "page": "<your site url>/api/proxy/site/",
+  "userImages": "<your site url>/api/proxy/user-images/"
+}
+```
+
+将上面的`<your site url>`替换成你的网址即可。
+
 ![](public/obsidian_proxy.jpg)
+
+添加配置后，重启Obsidian，就可以使用了。
