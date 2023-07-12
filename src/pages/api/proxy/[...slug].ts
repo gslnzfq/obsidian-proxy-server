@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import type {NextApiRequest, NextApiResponse} from "next";
 import axios from "axios";
 
 const baseUrls: Record<string, string> = {
@@ -26,18 +26,21 @@ export default function handler(
   const requestUrl = `${baseUrls[target]}/${url.join("/")}`;
   console.log("requestUrl", requestUrl);
 
-  const isJSON = requestUrl.endsWith(".json");
-  const isMD = requestUrl.endsWith(".md");
-  axios.get(requestUrl).then(response => {
-    if (isJSON) {
-      return res.status(response.status).json(response.data);
+  const isImage = /\.(png|jpe?g|webp|gif|bmp)$/i.test(requestUrl);
+
+  axios.get(requestUrl, {
+    responseType: isImage ? 'arraybuffer' : 'text'
+  }).then(response => {
+    if (isImage) {
+      res.setHeader('content-type', response.headers['content-type']);
+      res.setHeader('cache-control', 'public, max-age=31536000, immutable');
+      res.status(response.status).end(response.data);
+      return;
     }
-    if (isMD) {
-      // 替换https://github.com开头的图片资源为本站代理的的图片
-      response.data = response.data.replace(/https:\/\/github.com\/(\S*?)\/(\S*?)\/blob\/(.*)\)/g, function (match: string, user: string, repos: string, path: string) {
-        return `${req.headers["x-forwarded-proto"]}://${req.headers["host"]}/api/proxy/raw/${user}/${repos}/${path})`;
-      });
-    }
+    // 替换https://github.com开头的图片资源为本站代理的的图片
+    response.data = response.data.replace(/https:\/\/github.com\/(\S*?)\/(\S*?)\/blob\/(.*)\)/g, function (match: string, user: string, repos: string, path: string) {
+      return `${req.headers["x-forwarded-proto"]}://${req.headers["host"]}/api/proxy/raw/${user}/${repos}/${path})`;
+    });
     res.status(response.status).end(response.data);
   });
 }
