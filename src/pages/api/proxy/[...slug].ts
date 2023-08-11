@@ -37,10 +37,14 @@ export default function handler(
       res.status(response.status).end(response.data);
       return;
     }
-    // 替换https://github.com开头的图片资源为本站代理的的图片
-    response.data = response.data.replace(/https:\/\/github.com\/(\S*?)\/(\S*?)\/blob\/(.*)\)/g, function (match: string, user: string, repos: string, path: string) {
-      return `${req.headers["x-forwarded-proto"]}://${req.headers["host"]}/api/proxy/raw/${user}/${repos}/${path})`;
-    });
+
+    if (/\.md$/i.test(requestUrl)) {
+      // 替换README中的图片资源链接为本站的资源链接
+      response.data = response.data.replaceAll(
+        baseUrls["user-images"],
+        `${req.headers["x-forwarded-proto"]}://${req.headers["host"]}/api/proxy/user-images`
+      );
+    }
     res.status(response.status).end(response.data);
   });
 }
